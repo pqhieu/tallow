@@ -7,8 +7,14 @@ authors = [
     { name = "Pham Quang Hieu", email = "pqhieu1192@gmail.com" }
 ]
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "numpy>=2.2.6",
+    "torch>=2.10.0",
+]
 
 [build-system]
 requires = ["uv_build>=0.9.28,<0.10.0"]
 build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 120
