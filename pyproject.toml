@@ -17,4 +17,4 @@ requires = ["uv_build>=0.9.28,<0.10.0"]
 build-backend = "uv_build"
 
 [tool.ruff]
-line-length = 120
+line-length = 100

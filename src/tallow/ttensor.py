@@ -19,7 +19,9 @@ class TTensor(torch.Tensor):
     ):
         tensor = torch.as_tensor(data, dtype=dtype, device=device).requires_grad_(requires_grad)
         if tensor.shape[-1] != len(cls.channel_names):
-            raise ValueError(f"Tensor shape {tensor.shape} does not match number of channels {cls.num_channels}")
+            raise ValueError(
+                f"Tensor shape {tensor.shape} does not match number of channels {cls.num_channels}"
+            )
         return tensor.as_subclass(cls)
 
     def __getattr__(self, name: str, /) -> Any:
