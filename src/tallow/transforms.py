@@ -39,10 +39,10 @@ class DictTransform:
 
 if __name__ == "__main__":
 
-    def test_fn(x, y):
+    def add(x, y):
         return x + y
 
-    transform = DictTransform(test_fn, {"a": "x", "b": "y"}, ["a"])
+    transform = DictTransform(add, {"a": "x", "b": "y"}, ["a"])
     input = {"a": 1, "b": 2}
     output = transform(input)
     print(output)

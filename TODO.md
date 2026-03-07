@@ -1,0 +1,4 @@
+- [ ] config: Resolve reference values
+- [ ] ttensor: Overload `__torch_function__` properly
+- [ ] docs: Add high-level docstrings
+- [ ] build: Package each submodule separately
