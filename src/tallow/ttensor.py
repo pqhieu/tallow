@@ -30,11 +30,11 @@ class TTensor(torch.Tensor):
         raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
 
 
-class Boxes3D(TTensor, channel_names=["x", "y", "z", "l", "w", "h", "yaw"]):
-    pass
-
-
 if __name__ == "__main__":
+
+    class Boxes3D(TTensor, channel_names=["x", "y", "z", "l", "w", "h", "yaw"]):
+        pass
+
     data = torch.tensor([[1, 2, 3, 4, 5, 6, 7]])
     boxes = Boxes3D(data)
     print(boxes[..., 0], boxes[..., 1], boxes[..., 2])

@@ -1,4 +1,6 @@
 - [ ] config: Resolve reference values
+- [ ] config: Add config group
+- [ ] config: Share default configs
 - [ ] ttensor: Overload `__torch_function__` properly
 - [ ] docs: Add high-level docstrings
 - [ ] build: Package each submodule separately
