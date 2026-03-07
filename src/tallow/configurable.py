@@ -1,20 +1,26 @@
 from __future__ import annotations
 
-from typing import Any, Callable, Generic, ParamSpec, TypeVar
+from typing import Any, Callable, Generic, ParamSpec, TypeVar, cast
 
 import attrs
 
 P = ParamSpec("P")
 T = TypeVar("T")
+R = TypeVar("R")
 
 _REGISTRY: dict[str, Callable[..., Any]] = {}
+
+
+@attrs.define(frozen=True)
+class Ref:
+    name: str
 
 
 @attrs.define(frozen=True, kw_only=True)
 class Config(Generic[T, P]):
     callable: Callable[P, T]
     args: tuple
-    kwargs: dict
+    kwargs: dict[str, Any]
 
     def build(self) -> T:
         args = tuple(_build_if_config(a) for a in self.args)
@@ -36,6 +42,10 @@ def _build_if_config(value: Any) -> Any:
     return value.build() if isinstance(value, Config) else value
 
 
+def ref(name: str, *, as_type: type[R] | None = None) -> R:
+    return cast(R, Ref(name))
+
+
 if __name__ == "__main__":
     import torch.nn as nn
 
@@ -53,7 +63,7 @@ if __name__ == "__main__":
 
     config = make_config(
         MyModel,
-        encoder=make_config(nn.TransformerEncoderLayer, d_model=512, nhead=8),
+        encoder=make_config(nn.TransformerEncoderLayer, d_model=ref("hidden_size"), nhead=8),
         hidden_size=512,
     )
 
